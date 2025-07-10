@@ -13,3 +13,12 @@ override.tf.json
 
 *.terraform/
 .terraform/
+Terraform state files (*.tfstate)
+Crash logs (crash.log)
+Variable files (*.tfvars)
+Override files
+CLI config files (.terraformrc)
+Provider binaries and plugin directories (.terraform/)
+Plan output files (*.tfplan)
+Sensitive files (*.pem, *.key, *.crt)
+Backup and log files
