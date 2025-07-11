@@ -14,9 +14,9 @@ allow if {
   sku_env_allowed(resource)
 }
 
-# Allowed location: only Central India
+# Allowed location: only centralindia
 location_allowed(location) if {
-  location == "Central India"
+  location == "centralindia"
 }
 
 # Allowed SKUs
@@ -27,7 +27,7 @@ sku_allowed(sku) if {
   sku == "Premium"
 }
 
-# Block 1: Resource Group location must be Central India
+# Block 1: Resource Group location must be centralindia
 # This function now takes the resource group name and looks up its location
 rg_location_allowed(resource_group_name) if {
   some i
@@ -35,7 +35,7 @@ rg_location_allowed(resource_group_name) if {
   rg_resource := input.resource_changes[i]
   rg_resource.type == "azurerm_resource_group"
   rg_resource.change.after.name == resource_group_name
-  rg_resource.change.after.location == "Central India"
+  rg_resource.change.after.location == "centralindia"
 }
 
 # Block 2: SKU must match environment based on tags
@@ -59,7 +59,7 @@ deny contains reason if {
   resource := input.resource_changes[_]
   resource.type == "azurerm_storage_account"
   not location_allowed(resource.change.after.location)
-  reason := "Storage account location is not Central India"
+  reason := "Storage account location is not centralindia"
 }
 
 deny contains reason if {
@@ -75,7 +75,7 @@ deny contains reason if {
   resource.type == "azurerm_storage_account"
   # Pass the resource group name to the corrected rule
   not rg_location_allowed(resource.change.after.resource_group_name)
-  reason := "Resource group location must be Central India for storage accounts"
+  reason := "Resource group location must be centralindia for storage accounts"
 }
 
 # Deny reason for Block 2: SKU and Environment mismatch
