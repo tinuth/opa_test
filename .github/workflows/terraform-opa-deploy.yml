@@ -42,9 +42,12 @@ jobs:
 
       - name: Install OPA
         run: |
-          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
-          chmod +x opa
-          sudo mv opa /usr/local/bin/
+          # Download OPA to a temporary file name, e.g., 'opa-temp'
+          curl -L -o opa-temp https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+          # Make it executable
+          chmod +x opa-temp
+          # Move it to /usr/local/bin and rename it to 'opa'
+          sudo mv opa-temp /usr/local/bin/opa
 
       - name: Evaluate OPA Policy
         id: opa_check
