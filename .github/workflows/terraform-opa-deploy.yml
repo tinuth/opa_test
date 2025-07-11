@@ -59,7 +59,7 @@ jobs:
       - name: Evaluate OPA Policy
         id: opa_check
         run: |
-          result=$(opa eval --input tfplan.json --data ./opa 'data.azure.policy.allow' --format=json)
+          result=$(opa eval --input tfplan.json --data ../../opa 'data.azure.policy.allow' --format=json)
           echo "$result"
           allowed=$(echo "$result" | jq -r '.result[0].expressions[0].value')
           echo "Policy allowed: $allowed"
