@@ -1,0 +1,5 @@
+# Terraform generated files
+.terraform/         # Ignores the .terraform directory (provider plugins, modules cache)
+*.tfplan            # Ignores generated plan files
+*.tfstate           # Ignores state files
+*.tfstate.* # Ignores backup state files
