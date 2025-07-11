@@ -10,39 +10,38 @@ data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "dev_rg" {
   name     = "dev-rg"
-  location = var.location
+  location = "Central India"
 }
 
-resource "azurerm_resource_group" "sta_rg" {
-  name     = "sta-rg"
-  location = var.location
-}
+#resource "azurerm_resource_group" "sta_rg" {
+ # name     = "sta-rg"
+  #location = var.location
+#}
 
 resource "azurerm_resource_group" "prd_rg" {
   name     = "prd-rg"
-  location = var.location
+  location = "Central India"
 }
 
 resource "azurerm_storage_account" "dev_storage" {
   name                     = "devstorageacct"
   resource_group_name      = azurerm_resource_group.dev_rg.name
-  location                 = var.location
+  location                 = "Central India"
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  tags = {
+    environment = "dev"
+  }
 }
 
-resource "azurerm_storage_account" "sta_storage" {
-  name                     = "stastorageacct"
-  resource_group_name      = azurerm_resource_group.sta_rg.name
-  location                 = var.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
 
 resource "azurerm_storage_account" "prd_storage" {
   name                     = "prdstorageacct"
   resource_group_name      = azurerm_resource_group.prd_rg.name
-  location                 = var.location
+  location                 = "Central India"
   account_tier             = "Premium"
   account_replication_type = "ZRS"
+  tags = {
+    environment = "prod" 
+  }
 }

@@ -1,8 +1,7 @@
-variable "location" {
-  description = "Azure region"
-  type        = string
-  default     = "East US"
-}
+#variable "location" {
+ # description = "Azure region"
+  #type        = string
+#}
 
 variable "subscription_id" {
   description = "Azure Subscription ID"
@@ -27,3 +26,5 @@ variable "tenant_id" {
   type        = string
   sensitive   = true
 }
+
+
